@@ -210,4 +210,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-ALLOWED_HOSTS = ['.railway.app', '.vercel.app', 'localhost', '127.0.0.1', 'centsible-app.vercel.app']
+ALLOWED_HOSTS = ['.railway.app', '.vercel.app', 'localhost', '127.0.0.1', 'centsible-app.vercel.app', 'centsible-app.onrender.com']
