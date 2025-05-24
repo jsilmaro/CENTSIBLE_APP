@@ -140,12 +140,11 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 import os
 import dj_database_url
 
-# Database configuration
 if 'RAILWAY_ENVIRONMENT' in os.environ:
-    # Production: Use environment variable
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
+
 else:
     # Development: Use your existing Neon config
     DATABASES = {
