@@ -87,7 +87,7 @@ const Transactions = () => {
 
   const fetchTransactions = async () => {
     try {
-      const response = await fetch('https://vigilant-xylophone-r4gxw9xgv4r535556-8000.app.github.dev/api/transactions/', {
+      const response = await fetch('https://centsible-app.onrender.com/api/transactions/', {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -159,7 +159,7 @@ const Transactions = () => {
         return;
       }
 
-      const response = await fetch('https://vigilant-xylophone-r4gxw9xgv4r535556-8000.app.github.dev/api/transactions/', {
+      const response = await fetch('https://centsible-app.onrender.com/api/transactions/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

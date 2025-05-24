@@ -61,7 +61,7 @@ const Dashboard = () => {
 
   const fetchDashboardData = async () => {
     try {
-      const response = await fetch('https://vigilant-xylophone-r4gxw9xgv4r535556-8000.app.github.dev/api/dashboard/summary/', {
+      const response = await fetch('https://centsible-app.onrender.com/api/dashboard/summary/', {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
