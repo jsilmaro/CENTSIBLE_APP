@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+from decouple import config
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,13 +22,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-zgf3#x(!50jac!4nct#s$**^dsv@i*!-0*vb^=m=gw4gt5(2m2'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+SECRET_KEY = config('SECRET_KEY', default='fallback-insecure-key-for-dev')
+DEBUG = config('DEBUG', default=True, cast=bool)
 
 
 # Application definition
@@ -66,8 +63,16 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://centsible-app.vercel.app",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
+
+
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -76,6 +81,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 CORS_ALLOWED_ORIGINS = [
@@ -87,13 +96,18 @@ CORS_ALLOWED_ORIGINS = [
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOW_HEADERS = [
-    'content-type',
+    'accept',
+    'accept-encoding',
     'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
     'x-requested-with',
-    'Access-Control-Allow-Origin: https://centsible-app.vercel.app',
-    "content-disposition",
-    "accept",
+    'content-disposition',
 ]
+
 
 ROOT_URLCONF = 'cetsible_auth.urls'
 
@@ -105,7 +119,10 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
@@ -120,30 +137,32 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'CENTSIBLE_APP_DB',
-        'USER': 'CENTSIBLE_APP_DB_owner',
-        'PASSWORD': 'npg_Qk1ITYyLBC5R',
-        'HOST': 'ep-autumn-shadow-a8lxgtzc-pooler.eastus2.azure.neon.tech',
-        'PORT': '5432',  # default PostgreSQL port is 5432, leave empty if default
-        'OPTIONS': {
-            'sslmode': 'require',
-        },
+import os
+import dj_database_url
+
+# Database configuration
+if 'RAILWAY_ENVIRONMENT' in os.environ:
+    # Production: Use environment variable
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
-}
+else:
+    # Development: Use your existing Neon config
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'CENTSIBLE_APP_DB',
+            'USER': 'CENTSIBLE_APP_DB_owner',
+            'PASSWORD': 'npg_Qk1ITYyLBC5R',
+            'HOST': 'ep-autumn-shadow-a8lxgtzc-pooler.eastus2.azure.neon.tech',
+            'PORT': '5432',
+            'OPTIONS': {
+                'sslmode': 'require',
+            },
+        }
+    }
 
 
-CORS_ALLOW_HEADERS = [
-    'content-type',
-    'authorization',
-    'x-requested-with',
-    'Access-Control-Allow-Origin',
-    "content-disposition",
-    "accept",
-    "content-disposition",
-]
 
 
 
@@ -181,6 +200,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -190,3 +210,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+ALLOWED_HOSTS = ['.railway.app', '.vercel.app', 'localhost', '127.0.0.1', 'centsible-app.vercel.app']
