@@ -2,3 +2,6 @@
 **/venv/
 **/__pycache__/
 **/*.pyc
+# Ignore virtual environment backendd - mugana ang reg/venv/
+*.pyc
+

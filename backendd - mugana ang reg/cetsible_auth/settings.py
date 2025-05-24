@@ -81,10 +81,11 @@ CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
   "https://vigilant-xylophone-r4gxw9xgv4r535556-8000.app.github.dev",
   "https://vigilant-xylophone-r4gxw9xgv4r535556-8080.app.github.dev",
-  
-]
-CORS_ALLOW_CREDENTIALS = True
 
+]
+
+  
+CORS_ALLOW_CREDENTIALS = True
 
 
 ROOT_URLCONF = 'cetsible_auth.urls'
@@ -175,7 +176,6 @@ USE_TZ = True
 STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 
 
 CORS_ALLOW_CREDENTIALS = True
