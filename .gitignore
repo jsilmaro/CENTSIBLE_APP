@@ -1,7 +1,16 @@
-# Ignore any folder named "venv" anywhere in the project
-**/venv/
-**/__pycache__/
-**/*.pyc
-# Ignore virtual environment backendd - mugana ang reg/venv/
+# Python
+venv/
+__pycache__/
 *.pyc
+*.pyo
+*.pyd
 
+# Environment files
+.env
+
+# Node
+node_modules/
+
+# macOS & system junk
+.DS_Store
+Thumbs.db
