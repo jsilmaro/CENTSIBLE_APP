@@ -67,6 +67,7 @@ CSRF_TRUSTED_ORIGINS = [
     "https://centsible-app.vercel.app",
     "http://localhost:3000",
     "http://127.0.0.1:3000",
+    "https://centsible-app-j6a9.vercel.app",
 ]
 
 
@@ -92,6 +93,7 @@ CORS_ALLOWED_ORIGINS = [
   "https://vigilant-xylophone-r4gxw9xgv4r535556-8000.app.github.dev",
   "https://vigilant-xylophone-r4gxw9xgv4r535556-8080.app.github.dev",
   "https://centsible-app.onrender.com",
+  "https://centsible-app-j6a9.vercel.app",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -211,4 +213,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-ALLOWED_HOSTS = ['.railway.app', '.vercel.app', 'localhost', '127.0.0.1', 'centsible-app.vercel.app', 'centsible-app.onrender.com']
+ALLOWED_HOSTS = ['.railway.app', '.vercel.app', 'localhost', '127.0.0.1', 'centsible-app.vercel.app', 'centsible-app.onrender.com', 'centsible-app-j6a9.vercel.app']
+
