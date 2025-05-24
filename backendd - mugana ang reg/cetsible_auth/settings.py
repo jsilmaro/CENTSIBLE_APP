@@ -68,23 +68,23 @@ AUTHENTICATION_BACKENDS = [
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True  # Temporarily allow all origins
-CORS_ALLOW_ORIGINS = [
-  "http://localhost:8080",
-  "http://localhost:8000"
+CORS_ALLOW_ALL_ORIGINS = True 
+CORS_ALLOWED_ORIGINS = [
+  "https://vigilant-xylophone-r4gxw9xgv4r535556-8000.app.github.dev",
+  "https://vigilant-xylophone-r4gxw9xgv4r535556-8080.app.github.dev",
   
 ]
 CORS_ALLOW_CREDENTIALS = True
+
 
 
 ROOT_URLCONF = 'cetsible_auth.urls'
@@ -106,7 +106,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'cetsible_auth.wsgi.application'
 
-
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
 # Database
@@ -115,13 +114,28 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'centsible_dbb',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': 'CENTSIBLE_APP_DB',
+        'USER': 'CENTSIBLE_APP_DB_owner',
+        'PASSWORD': 'npg_Qk1ITYyLBC5R',
+        'HOST': 'ep-autumn-shadow-a8lxgtzc-pooler.eastus2.azure.neon.tech',
+        'PORT': '5432',  # default PostgreSQL port is 5432, leave empty if default
+        'OPTIONS': {
+            'sslmode': 'require',
+        },
     }
 }
+
+
+CORS_ALLOW_HEADERS = [
+    'content-type',
+    'authorization',
+    'x-requested-with',
+    'Access-Control-Allow-Origin',
+    "content-disposition",
+    "accept",
+    "content-disposition",
+]
+
 
 
 # Password validation
@@ -162,10 +176,7 @@ STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://localhost:5000",
-]
+
 
 CORS_ALLOW_CREDENTIALS = True
 
