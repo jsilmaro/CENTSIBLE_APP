@@ -1,1 +1,4 @@
-venv/
+# Ignore any folder named "venv" anywhere in the project
+**/venv/
+**/__pycache__/
+**/*.pyc
