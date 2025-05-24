@@ -77,18 +77,26 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True 
+
 CORS_ALLOWED_ORIGINS = [
+  "https://centsible-app.vercel.app",
   "https://vigilant-xylophone-r4gxw9xgv4r535556-8000.app.github.dev",
   "https://vigilant-xylophone-r4gxw9xgv4r535556-8080.app.github.dev",
-
 ]
 
-  
 CORS_ALLOW_CREDENTIALS = True
 
+CORS_ALLOW_HEADERS = [
+    'content-type',
+    'authorization',
+    'x-requested-with',
+    'Access-Control-Allow-Origin: https://centsible-app.vercel.app',
+    "content-disposition",
+    "accept",
+]
 
 ROOT_URLCONF = 'cetsible_auth.urls'
+
 
 TEMPLATES = [
     {
@@ -177,8 +185,6 @@ STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-
-CORS_ALLOW_CREDENTIALS = True
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
