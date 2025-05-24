@@ -91,6 +91,7 @@ CORS_ALLOWED_ORIGINS = [
   "https://centsible-app.vercel.app",
   "https://vigilant-xylophone-r4gxw9xgv4r535556-8000.app.github.dev",
   "https://vigilant-xylophone-r4gxw9xgv4r535556-8080.app.github.dev",
+  "https://centsible-app.onrender.com",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
