@@ -68,6 +68,7 @@ CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "https://centsible-app-j6a9.vercel.app",
+    "https://vigilant-xylophone-r4gxw9xgv4r535556-8081.app.github.dev",
 ]
 
 
@@ -94,6 +95,7 @@ CORS_ALLOWED_ORIGINS = [
   "https://vigilant-xylophone-r4gxw9xgv4r535556-8080.app.github.dev",
   "https://centsible-app.onrender.com",
   "https://centsible-app-j6a9.vercel.app",
+  "https://vigilant-xylophone-r4gxw9xgv4r535556-8081.app.github.dev",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
